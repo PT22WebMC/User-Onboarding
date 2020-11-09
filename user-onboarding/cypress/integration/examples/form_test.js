@@ -24,7 +24,6 @@ describe("First test", () => {
 
   it("Checks Terms Box", () => {
     cy.get('input[name="terms"]').click();
-    // .should('Be checked')
   });
   it("Submits inputs", () => {
     cy.get("button.submit").should("not.be.disabled");
@@ -38,7 +37,7 @@ describe("wont submit with missing inputs", () => {
     cy.get('input[name="name"]').type("Melanie");
     cy.get('input[name="password"]').type("PASSWORD");
     cy.get('input[name="terms"]').click();
-    cy.get("button.submit").should("be.disabled");
+    cy.get("button").should("be.disabled");
   });
 });
 
@@ -48,7 +47,7 @@ describe("Submit a user", () => {
     cy.get('input[name="name"]').type("Melanie Chele");
     cy.get('input[name="email"]').type("melaniechele@gmail.com");
     cy.get('input[name="password"]').type("PASSWORD");
-    cy.get('input[name="term"]').click();
-    cy.get("button.submit").click();
+    cy.get('input[name="terms"]').click();
+    cy.get("button").click();
   });
 });

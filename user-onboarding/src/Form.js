@@ -9,7 +9,7 @@ export default function Form() {
     password: "",
     terms: true,
   });
-  const [buttonDisable, setButtonDisabled] = useState(true);
+  const [buttonDisable, setButtonDisabled] = useState(false);
   const [errors, setErrors] = useState({
     name: "",
     email: "",
@@ -43,11 +43,12 @@ export default function Form() {
       setButtonDisabled(!valid);
     });
   }, [formState]);
+  console.log("F ", formState);
   const validateChange = (event) => {
     yup
       .reach(formSchema, event.target.name)
       .validate(
-        event.target.name === "terms"
+        event.target.name === formState.terms
           ? event.target.checked
           : event.target.value
       )
@@ -79,7 +80,7 @@ export default function Form() {
   return (
     <div className='myform'>
       <form onSubmit={formSubmit}>
-        <label for='name'>Name: </label>
+        <label htmlFor='name'>Name: </label>
         <input
           type='text'
           name='name'
@@ -92,7 +93,7 @@ export default function Form() {
 
         <br />
 
-        <label for='email'>Email: </label>
+        <label htmlFor='email'>Email: </label>
         <input
           type='text'
           name='email'
@@ -107,7 +108,7 @@ export default function Form() {
 
         <br />
 
-        <label for='pasword'>Password: </label>
+        <label htmlFor='pasword'>Password: </label>
         <input
           type='text'
           name='password'
@@ -122,7 +123,7 @@ export default function Form() {
 
         <br />
 
-        <label check>
+        <label>
           <input
             type='checkbox'
             name='terms'
